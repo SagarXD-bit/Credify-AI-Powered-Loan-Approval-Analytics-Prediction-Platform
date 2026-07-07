@@ -8,8 +8,17 @@ out-tsc
 .expo
 .expo-shared
 
+
+.venv/
+logs/
+__pycache__/
+*.pyc
+.env
+
 # dependencies
 node_modules
+__pycache__/
+*.pyc
 
 # IDEs and editors
 /.idea
@@ -36,6 +45,18 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+
+# database files (SQLite)
+*.db
+database/
+
+# environment files
+.env
+.env.local
+.env.production
+
+# ML model artifacts (can be regenerated)
+*.joblib
 
 # System Files
 .DS_Store

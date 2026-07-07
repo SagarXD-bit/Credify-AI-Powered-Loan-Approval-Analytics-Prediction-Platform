@@ -3,16 +3,14 @@ SQLite database utilities for storing loan predictions and applicant details.
 """
 
 import sqlite3
-import os
 import pandas as pd
 from datetime import datetime
-
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "database", "loan_predictions.db")
+from utils.runtime_paths import DATABASE_DIR, DB_PATH
 
 
 def get_connection():
     """Get a connection to the SQLite database."""
-    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    DATABASE_DIR.mkdir(parents=True, exist_ok=True)
     return sqlite3.connect(DB_PATH)
 
 
@@ -90,7 +88,9 @@ def save_prediction(applicant_data: dict, prediction: str, probability: float, m
         model_used,
     ))
     conn.commit()
+    row_id = cursor.lastrowid
     conn.close()
+    return row_id
 
 
 def get_predictions(search_term: str = "") -> pd.DataFrame:

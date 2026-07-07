@@ -2,13 +2,12 @@
 Data utilities: loading, cleaning, and preprocessing loan datasets.
 """
 
-import os
 import io
+import os
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
-
-DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "loan_data.csv")
+from utils.runtime_paths import DATA_PATH
 
 CATEGORICAL_COLS = ["Gender", "Married", "Dependents", "Education", "Self_Employed", "Property_Area"]
 NUMERIC_COLS = ["ApplicantIncome", "CoapplicantIncome", "LoanAmount", "Loan_Amount_Term", "Credit_History"]
@@ -145,12 +144,12 @@ def encode_single_input(input_dict: dict) -> np.ndarray:
         dependents_map.get(str(input_dict.get("Dependents", "0")), 0),
         education_map.get(str(input_dict.get("Education", "Graduate")), 0),
         self_employed_map.get(str(input_dict.get("Self_Employed", "No")), 0),
+        property_area_map.get(str(input_dict.get("Property_Area", "Urban")), 2),
         float(input_dict.get("ApplicantIncome", 0)),
         float(input_dict.get("CoapplicantIncome", 0)),
         float(input_dict.get("LoanAmount", 0)),
         float(input_dict.get("Loan_Amount_Term", 360)),
         float(input_dict.get("Credit_History", 1)),
-        property_area_map.get(str(input_dict.get("Property_Area", "Urban")), 2),
     ]
     return np.array(row).reshape(1, -1)
 

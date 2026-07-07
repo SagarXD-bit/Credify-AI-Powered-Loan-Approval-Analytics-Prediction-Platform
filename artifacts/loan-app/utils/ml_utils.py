@@ -14,10 +14,7 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score,
     f1_score, confusion_matrix,
 )
-
-MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "model")
-BEST_MODEL_PATH = os.path.join(MODEL_DIR, "best_model.joblib")
-MODEL_META_PATH = os.path.join(MODEL_DIR, "model_meta.joblib")
+from utils.runtime_paths import BEST_MODEL_PATH, MODEL_DIR, MODEL_META_PATH
 
 
 def get_models() -> dict:
@@ -65,7 +62,7 @@ def train_and_evaluate(X: pd.DataFrame, y: pd.Series, test_size: float = 0.2) ->
     best_model = results[best_name]["model"]
 
     # Persist best model + metadata
-    os.makedirs(MODEL_DIR, exist_ok=True)
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
     joblib.dump(best_model, BEST_MODEL_PATH)
     joblib.dump({
         "best_model_name": best_name,
