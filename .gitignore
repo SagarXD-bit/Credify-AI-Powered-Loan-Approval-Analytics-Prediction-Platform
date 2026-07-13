@@ -58,6 +58,9 @@ database/
 # ML model artifacts (can be regenerated)
 *.joblib
 
+# Replit artifacts
+.replit-artifact
+
 # System Files
 .DS_Store
 Thumbs.db
@@ -65,3 +68,4 @@ Thumbs.db
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
+.vercel
