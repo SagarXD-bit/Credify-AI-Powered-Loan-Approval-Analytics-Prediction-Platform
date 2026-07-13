@@ -55,8 +55,8 @@ database/
 .env.local
 .env.production
 
-# ML model artifacts (can be regenerated)
-*.joblib
+# ML model artifacts (committed for Vercel cold-start speed)
+# *.joblib
 
 # Replit artifacts
 .replit-artifact
