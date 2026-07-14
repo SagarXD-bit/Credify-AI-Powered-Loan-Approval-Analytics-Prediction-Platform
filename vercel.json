@@ -1,5 +1,8 @@
 {
+  "installCommand": "pnpm install",
+  "buildCommand": "cd artifacts/loan-app && pnpm build",
+  "outputDirectory": "artifacts/loan-app/dist/public",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/api/index" }
+    { "source": "/api/(.*)", "destination": "https://credify-api.onrender.com/api/$1" }
   ]
 }
