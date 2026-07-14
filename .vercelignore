@@ -1,0 +1,13 @@
+node_modules
+.git
+.gitignore
+*.md
+.env
+.env.example
+artifacts/api-server
+artifacts/mockup-sandbox
+scripts
+lib
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig*.json
